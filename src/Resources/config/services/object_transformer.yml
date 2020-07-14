@@ -1,0 +1,40 @@
+services:
+
+  CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\ObjectTransformerInterface: '@coreshop.google_shopping.object_transformer.composite'
+  coreshop.google_shopping.object_transformer.composite:
+    class: CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\CompositeObjectTransformer
+    public: true
+    arguments:
+      - '@coreshop.repository.store'
+
+  coreshop.google_shopping.object_transformer.default: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\DefaultObjectTransformer'
+  CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\DefaultObjectTransformer:
+    tags:
+      - { name: coreshop.google_shopping.object_transformer, priority: 900 }
+
+  coreshop.google_shopping.object_transformer.product_url: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\ProductUrlObjectTransformer'
+  CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\ProductUrlObjectTransformer:
+    tags:
+      - { name: coreshop.google_shopping.object_transformer, priority: 800 }
+    arguments:
+      - '@CoreShop\Component\Pimcore\Templating\Helper\LinkGeneratorHelper'
+
+  coreshop.google_shopping.object_transformer.availability: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\AvailabilityObjectTransformer'
+  CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\AvailabilityObjectTransformer:
+    tags:
+      - { name: coreshop.google_shopping.object_transformer, priority: 700 }
+    arguments:
+      - '@coreshop.inventory.availability_checker'
+
+  coreshop.google_shopping.object_transformer.google_product_category: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\GoogleProductCategoryObjectTransformer'
+  CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\GoogleProductCategoryObjectTransformer:
+    tags:
+      - { name: coreshop.google_shopping.object_transformer, priority: 600 }
+
+  coreshop.google_shopping.object_transformer.price: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\PriceObjectTransformer'
+  CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\PriceObjectTransformer:
+    tags:
+      - { name: coreshop.google_shopping.object_transformer, priority: 500 }
+    arguments:
+      - '@coreshop.product.taxed_price_calculator'
+      - '@coreshop.repository.store'

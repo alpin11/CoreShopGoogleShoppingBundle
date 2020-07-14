@@ -1,0 +1,4 @@
+core_shop_google_shopping:
+  repositories:
+    - id: coreshop.repository.product
+      priority: 100

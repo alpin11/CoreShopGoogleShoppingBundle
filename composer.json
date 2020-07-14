@@ -1,0 +1,25 @@
+{
+    "name": "alpin11/coreshop-google-shopping-bundle",
+    "description": "CoreShop - Google Shopping Bundle",
+    "type": "pimcore-bundle",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Manuel Seisl",
+            "email": "m.seisl@alpin11.at",
+            "homepage": "https://www.alpin11.at",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "pimcore/pimcore": "^6.0",
+        "vitalybaev/google-merchant-feed": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CoreShop\\Bundle\\GoogleShoppingBundle\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,17 @@
+imports:
+  - { resource: services/data_collector.yml }
+  - { resource: services/object_filter.yml }
+  - { resource: services/object_transformer.yml }
+  - { resource: services/distributor.yml }
+
+services:
+  _defaults:
+    public: true
+
+  CoreShop\Bundle\GoogleShoppingBundle\Command\GoogleShoppingCommand:
+    arguments:
+      - '@coreshop.google_shopping.data_collector.default'
+      - '@coreshop.google_shopping.object_transformer'
+      - '@coreshop.google_shopping.distributor'
+    tags:
+      - { name: console.command }
