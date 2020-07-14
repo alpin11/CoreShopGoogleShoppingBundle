@@ -25,3 +25,11 @@ core_shop_google_shopping:
         - id: app.repository.[REPOSITORY_NAME]
           priority: 200
 ```
+
+#### 4. Dump feed
+```bash
+    bin/console coreshop:google-shopping:dump-feed --params='{"store": [STORE_ID], "filename": "[FILENAME]", "locale": "[LOCALE]"}'
+```
+
+#### 4. Done
+The feed will be saved into `web\google-shopping`
