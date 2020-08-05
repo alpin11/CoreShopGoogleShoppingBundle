@@ -13,10 +13,20 @@ class ProductUrlObjectTransformer implements ObjectTransformerInterface
      * @var LinkGeneratorHelperInterface
      */
     private $linkGeneratorHelper;
+    /**
+     * @var string|null
+     */
+    private $baseUrl;
 
-    public function __construct(LinkGeneratorHelperInterface $linkGeneratorHelper)
+    /**
+     * ProductUrlObjectTransformer constructor.
+     * @param LinkGeneratorHelperInterface $linkGeneratorHelper
+     * @param string|null $baseUrl
+     */
+    public function __construct(LinkGeneratorHelperInterface $linkGeneratorHelper, string $baseUrl = null)
     {
         $this->linkGeneratorHelper = $linkGeneratorHelper;
+        $this->baseUrl = $baseUrl;
     }
 
     /**
@@ -24,11 +34,14 @@ class ProductUrlObjectTransformer implements ObjectTransformerInterface
      */
     public function transform($product, $item, $options = [])
     {
+        $baseUrl = isset($options['base_url']) ? $options['base_url'] : $this->baseUrl;
         $locale = isset($options['locale']) ? $options['locale'] : Tool::getDefaultLanguage();
 
-        $item->setLink($this->linkGeneratorHelper->getUrl($product, null, [
-            '_locale' => $locale
-        ]));
+        $link = $baseUrl . $this->linkGeneratorHelper->getPath($product, null, [
+                '_locale' => $locale
+            ]);
+
+        $item->setLink($link);
 
         return $item;
     }

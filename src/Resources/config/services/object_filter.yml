@@ -1,11 +1,11 @@
 services:
 
-  CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\ObjectFilterInterface: '@coreshop.google_shopping.object_filter.composite'
-  coreshop.google_shopping.object_filter.composite:
-    class: CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\CompositeObjectFilter
-    public: true
+    CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\ObjectFilterInterface: '@coreshop.google_shopping.object_filter.composite'
+    coreshop.google_shopping.object_filter.composite:
+        class: CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\CompositeObjectFilter
+        public: true
 
-  coreshop.google_shopping.object_filter.stores: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\StoresObjectFilter'
-  CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\StoresObjectFilter:
-    tags:
-      - { name: coreshop.google_shopping.object_filter, priority: 900 }
+    coreshop.google_shopping.object_filter.stores: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\StoresObjectFilter'
+    CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\StoresObjectFilter:
+        tags:
+            - { name: coreshop.google_shopping.object_filter, priority: 900 }
