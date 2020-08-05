@@ -46,13 +46,13 @@ class CompositeObjectTransformer implements ObjectTransformerInterface
 
         $store = $this->storeRepository->find($options['store']);
 
-        $feed = new Feed($store->getName(), null, null);
+        $feed = new Feed($store->getName(), $options['file_url'], null);
 
         foreach ($product as $productItem) {
             $item = new Product();
 
             foreach ($this->transformers as $transformer) {
-                $transformer->transform($productItem, $item);
+                $transformer->transform($productItem, $item, $options);
             }
 
             $feed->addProduct($item);

@@ -58,12 +58,14 @@ class GoogleShoppingCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $params = json_decode($input->getOption('params'), true);
+        $path = sprintf("%s/google-shopping/%s", $params['base_url'], $params['filename']);
+
+        $params['file_url'] = $path;
 
         $result = $this->dataCollector->collect($params);
         $data = $this->objectTransformer->transform($result, null, $params);
         $this->distributor->distribute($data, $params);
 
-        $path = sprintf("%s/google-shopping/%s", Tool::getHostUrl(), $params['filename']);
 
         $output->writeln('Google Shopping feed successfully generated');
         $output->writeln('The feed is stored under: ' . $path);

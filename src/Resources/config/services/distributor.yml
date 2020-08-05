@@ -1,14 +1,14 @@
 services:
 
-  CoreShop\Bundle\GoogleShoppingBundle\Distributor\DistributorInterface: '@coreshop.google_shopping.distributor.composite'
-  coreshop.google_shopping.distributor.composite:
-    class: CoreShop\Bundle\GoogleShoppingBundle\Distributor\CompositeDistributor
-    public: true
+    CoreShop\Bundle\GoogleShoppingBundle\Distributor\DistributorInterface: '@coreshop.google_shopping.distributor.composite'
+    coreshop.google_shopping.distributor.composite:
+        class: CoreShop\Bundle\GoogleShoppingBundle\Distributor\CompositeDistributor
+        public: true
 
-  coreshop.google_shopping.distributor.public_storage: '@CoreShop\Bundle\GoogleShoppingBundle\Distributor\PublicStorageDistributor'
-  CoreShop\Bundle\GoogleShoppingBundle\Distributor\PublicStorageDistributor:
-    tags:
-      - { name: coreshop.google_shopping.distributor, priority: 900 }
-    arguments:
-      - '@filesystem'
-      - '%kernel.project_dir%/web/'
+    coreshop.google_shopping.distributor.public_storage: '@CoreShop\Bundle\GoogleShoppingBundle\Distributor\PublicStorageDistributor'
+    CoreShop\Bundle\GoogleShoppingBundle\Distributor\PublicStorageDistributor:
+        tags:
+            - { name: coreshop.google_shopping.distributor, priority: 900 }
+        arguments:
+            - '@filesystem'
+            - '%kernel.project_dir%/web/'

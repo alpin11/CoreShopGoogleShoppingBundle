@@ -20,6 +20,8 @@ class Configuration implements ConfigurationInterface
 
         $root
             ->children()
+                ->scalarNode('host')->defaultNull()->end()
+                ->scalarNode('protocol')->defaultValue('https')->end()
                 ->arrayNode('repositories')
                         ->arrayPrototype()
                             ->children()
