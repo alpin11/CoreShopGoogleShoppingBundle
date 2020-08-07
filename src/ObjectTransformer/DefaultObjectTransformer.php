@@ -4,8 +4,6 @@
 namespace CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer;
 
 
-use Pimcore\Model\Asset\Image;
-
 class DefaultObjectTransformer implements ObjectTransformerInterface
 {
     /**

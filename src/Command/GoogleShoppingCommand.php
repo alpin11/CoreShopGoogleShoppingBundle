@@ -66,7 +66,6 @@ class GoogleShoppingCommand extends AbstractCommand
         $data = $this->objectTransformer->transform($result, null, $params);
         $this->distributor->distribute($data, $params);
 
-
         $output->writeln('Google Shopping feed successfully generated');
         $output->writeln('The feed is stored under: ' . $path);
     }

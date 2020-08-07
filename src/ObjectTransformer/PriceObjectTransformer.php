@@ -20,10 +20,20 @@ class PriceObjectTransformer implements ObjectTransformerInterface
      */
     private $storeRepository;
 
-    public function __construct(TaxedProductPriceCalculatorInterface $productPriceCalculator, StoreRepositoryInterface $storeRepository)
+    /**
+     * @var float
+     */
+    private $decimalFactor;
+
+    public function __construct(
+        TaxedProductPriceCalculatorInterface $productPriceCalculator,
+        StoreRepositoryInterface $storeRepository,
+        float $decimalFactor
+    )
     {
         $this->productPriceCalculator = $productPriceCalculator;
         $this->storeRepository = $storeRepository;
+        $this->decimalFactor = $decimalFactor;
     }
 
     /**
@@ -48,7 +58,9 @@ class PriceObjectTransformer implements ObjectTransformerInterface
             'currency' => $store->getCurrency()
         ];
 
-        $item->setPrice($this->productPriceCalculator->getPrice($product, $context));
+        $price = sprintf("%01.2f", ($this->productPriceCalculator->getPrice($product, $context) / $this->decimalFactor));;
+
+        $item->setPrice(sprintf('%s %s', $price, $store->getCurrency()->getIsoCode()));
 
         return $item;
     }
