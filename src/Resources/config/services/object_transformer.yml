@@ -39,6 +39,7 @@ services:
         arguments:
             - '@coreshop.product.taxed_price_calculator'
             - '@coreshop.repository.store'
+            - '%coreshop.currency.decimal_factor%'
 
     coreshop.google_shopping.object_transformer.product_image: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\ProductImageObjectTransformer'
     CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\ProductImageObjectTransformer:
