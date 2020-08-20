@@ -11,9 +11,9 @@ class RegisterObjectFiltersPass extends PrioritizedCompositeServicePass
     public function __construct()
     {
         parent::__construct(
-            'coreshop.object_filter',
-            'coreshop.object_filter.composite',
-            'coreshop.object_filter',
+            'coreshop.google_shopping.object_filter',
+            'coreshop.google_shopping.object_filter.composite',
+            'coreshop.google_shopping.object_filter',
             'addFilter'
         );
     }

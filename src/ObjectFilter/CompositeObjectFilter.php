@@ -9,7 +9,6 @@ use Zend\Stdlib\PriorityQueue;
 
 class CompositeObjectFilter implements ObjectFilterInterface
 {
-
     /**
      * @var PriorityQueue|ObjectFilterInterface[]
      */
