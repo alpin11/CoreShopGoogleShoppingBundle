@@ -13,7 +13,7 @@ class DefaultObjectTransformer implements ObjectTransformerInterface
     {
         $item->setId($product->getId());
         $item->setTitle($product->getName($options['locale']));
-        $item->setDescription(strip_tags($product->getDescription($options['locale'])));
+        $item->setDescription(strip_tags($product->getShortDescription($options['locale'])));
         $item->setBrand($product->getManufacturer()->getName());
         $item->setGtin($product->getEan());
         $item->setMpn($product->getEan());
