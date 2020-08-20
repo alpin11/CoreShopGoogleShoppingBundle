@@ -5,4 +5,4 @@ services:
         class: CoreShop\Bundle\GoogleShoppingBundle\DataCollector\DefaultDataCollector
         public: true
         arguments:
-            - '@CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\StoresObjectFilter'
+            - '@coreshop.google_shopping.object_filter.composite'

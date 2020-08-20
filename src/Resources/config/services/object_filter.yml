@@ -9,3 +9,8 @@ services:
     CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\StoresObjectFilter:
         tags:
             - { name: coreshop.google_shopping.object_filter, priority: 900 }
+
+    coreshop.google_shopping.object_filter.active: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\ActiveObjectFilter'
+    CoreShop\Bundle\GoogleShoppingBundle\ObjectFilter\ActiveObjectFilter:
+        tags:
+            - { name: coreshop.google_shopping.object_filter, priority: 800 }
