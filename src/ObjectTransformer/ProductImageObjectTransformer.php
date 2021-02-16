@@ -32,6 +32,16 @@ class ProductImageObjectTransformer implements ObjectTransformerInterface
             $item->setImage($imageUrl);
         }
 
+        foreach ($product->getImages() as $image) {
+            if ($image instanceof Image) {
+                continue;
+            }
+
+            $imageUrl = $baseUrl . $image->getThumbnail(['width' => 500, 'height' => 'auto'])->getPath();
+
+            $item->setAdditionalImage($imageUrl);
+        }
+
         return $item;
     }
 }

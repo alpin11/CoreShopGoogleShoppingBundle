@@ -45,6 +45,7 @@ class DefaultDataCollector implements DataCollectorInterface
 
         foreach ($this->repositories as $repository) {
             $list = $repository->getList();
+            $list->addConditionParam('active = 1');
 
             $this->objectFilter->apply($list, $options);
 

@@ -11,7 +11,9 @@ class GoogleProductCategoryObjectTransformer implements ObjectTransformerInterfa
      */
     public function transform($product, $item, $options = [])
     {
-        $item->setGoogleCategory($product->getGoogleProductCategory());
+        if (!empty($product->getCategories())){
+            $item->setGoogleCategory($product->getCategories()[0]->getGoogleCategoryId() ? $product->getCategories()[0]->getGoogleCategoryId() : $product->getGoogleProductCategory());
+        }
 
         return $item;
     }
