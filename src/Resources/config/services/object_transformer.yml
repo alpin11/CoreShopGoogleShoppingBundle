@@ -4,8 +4,6 @@ services:
     coreshop.google_shopping.object_transformer.composite:
         class: CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\CompositeObjectTransformer
         public: true
-        arguments:
-            - '@coreshop.repository.store'
 
     coreshop.google_shopping.object_transformer.default: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\DefaultObjectTransformer'
     CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\DefaultObjectTransformer:

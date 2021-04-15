@@ -18,15 +18,9 @@ class CompositeObjectTransformer implements ObjectTransformerInterface
      */
     private $transformers;
 
-    /**
-     * @var StoreRepositoryInterface
-     */
-    private $storeRepository;
-
-    public function __construct(StoreRepositoryInterface $storeRepository)
+    public function __construct()
     {
         $this->transformers = new PriorityQueue();
-        $this->storeRepository = $storeRepository;
     }
 
     /**
@@ -43,23 +37,13 @@ class CompositeObjectTransformer implements ObjectTransformerInterface
      */
     public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = [])
     {
-        Assert::isArray($product);
+        $item = new Product();
 
-        $store = $this->storeRepository->find($options['store']);
-
-        $feed = new Feed($store->getName(), $options['file_url'], null);
-
-        foreach ($product as $productItem) {
-            $item = new Product();
-
-            foreach ($this->transformers as $transformer) {
-                $transformer->transform($productItem, $item, $options);
-            }
-
-            $feed->addProduct($item);
+        foreach ($this->transformers as $transformer) {
+            $transformer->transform($product, $item, $options);
         }
 
-        return $feed;
+        return $item;
     }
 
 }
