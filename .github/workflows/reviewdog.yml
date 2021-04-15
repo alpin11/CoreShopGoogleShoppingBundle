@@ -16,6 +16,7 @@ jobs:
                     level: 'error'
                     locale: 'US'
                     path: './src'
+                    exclude: './Resources/google/*'
 
     phpmd-linter:
         name: PHPMD
