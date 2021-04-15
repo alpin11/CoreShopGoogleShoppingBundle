@@ -6,6 +6,7 @@ namespace CoreShop\Bundle\GoogleShoppingBundle\Model;
 use CoreShop\Component\Inventory\Model\StockableInterface;
 use CoreShop\Component\Product\Model\CategoryInterface;
 use CoreShop\Component\Product\Model\ManufacturerInterface;
+use CoreShop\Component\Taxation\Model\TaxRuleGroupInterface;
 use Pimcore\Model\Asset\Image;
 
 interface GoogleShoppingProductInterface extends StockableInterface
@@ -61,4 +62,9 @@ interface GoogleShoppingProductInterface extends StockableInterface
      * @return string
      */
     public function getCondition();
+
+    /**
+     * @return TaxRuleGroupInterface
+     */
+    public function getTaxRule();
 }
