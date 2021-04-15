@@ -36,7 +36,7 @@ jobs:
                     github_token: '${{ github.token }}'
                     level: 'error'
                     reporter: 'github-pr-check'
-                    standard: 'cleancode,codesize,controversial,design,naming,unusedcode'
+                    standard: './phpmd.xml'
                     target_directory: 'src'
 
     phpstan-linter:
