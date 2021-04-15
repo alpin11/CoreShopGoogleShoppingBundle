@@ -15,7 +15,7 @@ jobs:
                 with:
                     level: 'error'
                     locale: 'US'
-                    path: './src"
+                    path: './src'
 
     phpmd-linter:
         name: PHPMD
