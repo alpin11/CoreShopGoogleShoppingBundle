@@ -4,8 +4,10 @@
 namespace CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer;
 
 
+use CoreShop\Bundle\GoogleShoppingBundle\Model\GoogleShoppingProductInterface;
 use CoreShop\Component\Pimcore\Templating\Helper\LinkGeneratorHelperInterface;
 use Pimcore\Tool;
+use Vitalybaev\GoogleMerchant\Product;
 
 class ProductUrlObjectTransformer implements ObjectTransformerInterface
 {
@@ -32,7 +34,7 @@ class ProductUrlObjectTransformer implements ObjectTransformerInterface
     /**
      * @inheritDoc
      */
-    public function transform($product, $item, $options = [])
+    public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = [])
     {
         $baseUrl = isset($options['base_url']) ? $options['base_url'] : $this->baseUrl;
         $locale = isset($options['locale']) ? $options['locale'] : Tool::getDefaultLanguage();

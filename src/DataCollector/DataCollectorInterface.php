@@ -10,5 +10,5 @@ interface DataCollectorInterface
      * @param array $options
      * @return GoogleShoppingProductInterface[]
      */
-    public function collect($options = []): array;
+    public function collect(array $options = []): array;
 }

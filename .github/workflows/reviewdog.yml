@@ -16,6 +16,7 @@ jobs:
                     level: 'error'
                     locale: 'US'
                     path: './src'
+                    exclude: './Resources/google/*'
 
     phpmd-linter:
         name: PHPMD
@@ -23,6 +24,14 @@ jobs:
         steps:
             -   name: Check out code into the workspace
                 uses: actions/checkout@v2
+            -   name: Add HTTP basic auth credentials
+                run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
+            -   name: Install dependencies for PHPMD
+                uses: php-actions/composer@v5
+                with:
+                    php_version: 7.4
+                    version: 2
+                    command: install --no-scripts --ignore-platform-reqs
             -   name: Run php check code with reviewdog
                 uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
                 with:
@@ -38,6 +47,14 @@ jobs:
         steps:
             -   name: Check out code into the workspace
                 uses: actions/checkout@v2
+            -   name: Add HTTP basic auth credentials
+                run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
+            -   name: Install dependencies for PHPStan
+                uses: php-actions/composer@v5
+                with:
+                    php_version: 7.4
+                    version: 2
+                    command: install --no-scripts --ignore-platform-reqs
             -   name: Run php check code with reviewdog
                 uses: GeneaLabs/action-reviewdog-phpstan@1.0.0
                 with:

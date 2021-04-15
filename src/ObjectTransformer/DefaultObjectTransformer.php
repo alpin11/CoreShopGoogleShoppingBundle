@@ -4,12 +4,15 @@
 namespace CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer;
 
 
+use CoreShop\Bundle\GoogleShoppingBundle\Model\GoogleShoppingProductInterface;
+use Vitalybaev\GoogleMerchant\Product;
+
 class DefaultObjectTransformer implements ObjectTransformerInterface
 {
     /**
      * @inheritDoc
      */
-    public function transform($product, $item, $options = [])
+    public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = [])
     {
         $item->setId($product->getId());
         $item->setTitle($product->getName($options['locale']));

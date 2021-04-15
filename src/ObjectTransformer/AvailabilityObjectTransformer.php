@@ -4,7 +4,9 @@
 namespace CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer;
 
 
+use CoreShop\Bundle\GoogleShoppingBundle\Model\GoogleShoppingProductInterface;
 use CoreShop\Component\Inventory\Checker\AvailabilityCheckerInterface;
+use Vitalybaev\GoogleMerchant\Product;
 use Vitalybaev\GoogleMerchant\Product\Availability\Availability;
 
 class AvailabilityObjectTransformer implements ObjectTransformerInterface
@@ -22,7 +24,7 @@ class AvailabilityObjectTransformer implements ObjectTransformerInterface
     /**
      * @inheritDoc
      */
-    public function transform($product, $item, $options = [])
+    public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = [])
     {
         if ($product->isPreorder()) {
             $item->setAvailability(Availability::PREORDER);

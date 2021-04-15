@@ -14,7 +14,7 @@ interface ObjectTransformerInterface
      * @param GoogleShoppingProductInterface|GoogleShoppingProductInterface[] $product
      * @param Product $item
      * @param array $options
-     * @return Feed
+     * @return Feed|Product
      */
-    public function transform($product, $item, $options = []);
+    public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = []);
 }
