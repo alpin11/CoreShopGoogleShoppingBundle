@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Vitalybaev\GoogleMerchant\Feed;
+use Vitalybaev\GoogleMerchant\Product;
 
 class GoogleShoppingCommand extends AbstractCommand
 {
@@ -77,7 +78,8 @@ class GoogleShoppingCommand extends AbstractCommand
         $feed = new Feed($store->getName(), $params['file_url'], null);
 
         foreach ($result as $item) {
-            $entry = $this->objectTransformer->transform($item, null, $params);
+            $entry = new Product();
+            $entry = $this->objectTransformer->transform($item, $entry, $params);
 
             $feed->addProduct($entry);
         }
