@@ -24,8 +24,6 @@ jobs:
         steps:
             -   name: Check out code into the workspace
                 uses: actions/checkout@v2
-            -   name: Add HTTP basic auth credentials
-                run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
             -   name: Install dependencies for PHPMD
                 uses: php-actions/composer@v5
                 with:
@@ -38,7 +36,7 @@ jobs:
                     github_token: '${{ github.token }}'
                     level: 'error'
                     reporter: 'github-pr-check'
-                    standard: 'cleancode,codesize,controversial,design,naming,unusedcode'
+                    standard: './phpmd.xml'
                     target_directory: 'src'
 
     phpstan-linter:
@@ -47,8 +45,6 @@ jobs:
         steps:
             -   name: Check out code into the workspace
                 uses: actions/checkout@v2
-            -   name: Add HTTP basic auth credentials
-                run: echo '${{ secrets.COMPOSER_AUTH_JSON }}' > $GITHUB_WORKSPACE/auth.json
             -   name: Install dependencies for PHPStan
                 uses: php-actions/composer@v5
                 with:
