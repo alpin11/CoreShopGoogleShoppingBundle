@@ -6,7 +6,7 @@ Create your Google Shopping XML Feeds with CoreShop Products
 #### 1. Composer
 
 ```json
-    "alpin11/coreshop-google-shopping-bundle": "^1.0"
+    "alpin11/coreshop-google-shopping-bundle": "^1.2"
 ```
 
 #### 2. Activate
