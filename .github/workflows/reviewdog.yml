@@ -1,0 +1,47 @@
+name: reviewdog
+
+on:
+    - pull_request
+
+jobs:
+    misspell:
+        name: runner / misspell
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Check out code.
+                uses: actions/checkout@v1
+            -   name: misspell
+                uses: reviewdog/action-misspell@v1
+                with:
+                    level: 'error'
+                    locale: 'US'
+                    path: './src"
+
+    phpmd-linter:
+        name: PHPMD
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Check out code into the workspace
+                uses: actions/checkout@v2
+            -   name: Run php check code with reviewdog
+                uses: GeneaLabs/action-reviewdog-phpmd@1.0.0
+                with:
+                    github_token: '${{ github.token }}'
+                    level: 'error'
+                    reporter: 'github-pr-check'
+                    standard: 'cleancode,codesize,controversial,design,naming,unusedcode'
+                    target_directory: 'src'
+
+    phpstan-linter:
+        name: PHPStan
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Check out code into the workspace
+                uses: actions/checkout@v2
+            -   name: Run php check code with reviewdog
+                uses: GeneaLabs/action-reviewdog-phpstan@1.0.0
+                with:
+                    github_token: '${{ github.token }}'
+                    level: 'error'
+                    reporter: 'github-pr-check'
+                    target_directory: 'src'
