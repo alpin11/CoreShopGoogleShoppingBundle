@@ -4,9 +4,11 @@
 namespace CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer;
 
 
+use CoreShop\Bundle\GoogleShoppingBundle\Model\GoogleShoppingProductInterface;
 use CoreShop\Component\Core\Product\TaxedProductPriceCalculatorInterface;
 use CoreShop\Component\Store\Model\StoreInterface;
 use CoreShop\Component\Store\Repository\StoreRepositoryInterface;
+use Vitalybaev\GoogleMerchant\Product;
 
 class PriceObjectTransformer implements ObjectTransformerInterface
 {
@@ -39,7 +41,7 @@ class PriceObjectTransformer implements ObjectTransformerInterface
     /**
      * @inheritDoc
      */
-    public function transform($product, $item, $options = [])
+    public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = [])
     {
         $storeId = array_key_exists('store', $options) ? $options['store'] : null;
 

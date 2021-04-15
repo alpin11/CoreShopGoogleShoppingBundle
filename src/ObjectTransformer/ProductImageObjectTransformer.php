@@ -4,7 +4,9 @@
 namespace CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer;
 
 
+use CoreShop\Bundle\GoogleShoppingBundle\Model\GoogleShoppingProductInterface;
 use Pimcore\Model\Asset\Image;
+use Vitalybaev\GoogleMerchant\Product;
 
 class ProductImageObjectTransformer implements ObjectTransformerInterface
 {
@@ -21,7 +23,7 @@ class ProductImageObjectTransformer implements ObjectTransformerInterface
     /**
      * @inheritDoc
      */
-    public function transform($product, $item, $options = [])
+    public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = [])
     {
         $baseUrl = isset($options['base_url']) ? $options['base_url'] : $this->baseUrl;
         $image = $product->getImage();

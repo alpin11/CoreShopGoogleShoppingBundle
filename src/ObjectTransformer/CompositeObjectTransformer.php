@@ -4,6 +4,7 @@
 namespace CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer;
 
 
+use CoreShop\Bundle\GoogleShoppingBundle\Model\GoogleShoppingProductInterface;
 use CoreShop\Component\Store\Repository\StoreRepositoryInterface;
 use Vitalybaev\GoogleMerchant\Feed;
 use Vitalybaev\GoogleMerchant\Product;
@@ -40,7 +41,7 @@ class CompositeObjectTransformer implements ObjectTransformerInterface
     /**
      * @inheritDoc
      */
-    public function transform($product, $item, $options = [])
+    public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = [])
     {
         Assert::isArray($product);
 
