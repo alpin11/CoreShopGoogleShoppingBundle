@@ -19,7 +19,7 @@ class DefaultDataCollector implements DataCollectorInterface
     /**
      * @var ObjectFilterInterface
      */
-    private $objectFilter;
+    private ObjectFilterInterface $objectFilter;
 
     public function __construct(ObjectFilterInterface $objectFilter)
     {
@@ -39,7 +39,7 @@ class DefaultDataCollector implements DataCollectorInterface
     /**
      * @inheritDoc
      */
-    public function collect($options = [])
+    public function collect($options = []): array
     {
         $objects = [];
 
