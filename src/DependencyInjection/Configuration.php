@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('host')->defaultNull()->end()
                 ->scalarNode('protocol')->defaultValue('https')->end()
+                ->scalarNode('cdn_enabled')->defaultFalse()->end()
                 ->arrayNode('repositories')
                         ->arrayPrototype()
                             ->children()

@@ -21,9 +21,9 @@ class CoreShopGoogleShoppingExtension extends Extension
         $loader->load('services.yml');
 
         $container->setParameter('coreshop.google_shopping.repositories', $config['repositories']);
-
         $container->setParameter('coreshop.google_shopping.host', $config['host']);
         $container->setParameter('coreshop.google_shopping.protocol', $config['protocol']);
+        $container->setParameter('coreshop.google_shopping.cdn_enabled', $config['cdn_enabled']);
         $container->setParameter('coreshop.google_shopping.base_url', sprintf("%s://%s", $config['protocol'], $config['host']));
     }
 }

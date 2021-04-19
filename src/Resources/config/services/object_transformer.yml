@@ -42,6 +42,7 @@ services:
     coreshop.google_shopping.object_transformer.product_image: '@CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\ProductImageObjectTransformer'
     CoreShop\Bundle\GoogleShoppingBundle\ObjectTransformer\ProductImageObjectTransformer:
         arguments:
+            - '%coreshop.google_shopping.cdn_enabled%'
             - '%coreshop.google_shopping.base_url%'
         tags:
             - { name: coreshop.google_shopping.object_transformer, priority: 400 }

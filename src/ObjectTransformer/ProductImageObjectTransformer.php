@@ -10,14 +10,14 @@ use Vitalybaev\GoogleMerchant\Product;
 
 class ProductImageObjectTransformer implements ObjectTransformerInterface
 {
-    /**
-     * @var string
-     */
-    private $baseUrl;
 
-    public function __construct(string $baseUrl = null)
+    private string $baseUrl;
+    private bool $cdnEnabled;
+
+    public function __construct(bool $cdnEnabled, string $baseUrl = null)
     {
         $this->baseUrl = $baseUrl;
+        $this->cdnEnabled = $cdnEnabled;
     }
 
     /**
@@ -29,9 +29,13 @@ class ProductImageObjectTransformer implements ObjectTransformerInterface
         $image = $product->getImage();
 
         if ($image instanceof Image) {
-            $imageUrl = $baseUrl . $image->getThumbnail(['width' => 500, 'height' => 'auto'])->getPath();
+            $thumbnailUrl = $image->getThumbnail(['width' => 500, 'height' => 'auto'])->getPath();
 
-            $item->setImage($imageUrl);
+            if (!$this->cdnEnabled) {
+                $thumbnailUrl = $baseUrl . $thumbnailUrl;
+            }
+
+            $item->setImage($thumbnailUrl);
         }
 
         foreach ($product->getImages() as $image) {
@@ -39,9 +43,13 @@ class ProductImageObjectTransformer implements ObjectTransformerInterface
                 continue;
             }
 
-            $imageUrl = $baseUrl . $image->getThumbnail(['width' => 500, 'height' => 'auto'])->getPath();
+            $thumbnailUrl = $image->getThumbnail(['width' => 500, 'height' => 'auto'])->getPath();
 
-            $item->setAdditionalImage($imageUrl);
+            if (!$this->cdnEnabled) {
+                $thumbnailUrl = $baseUrl . $thumbnailUrl;
+            }
+
+            $item->setAdditionalImage($thumbnailUrl);
         }
 
         return $item;
