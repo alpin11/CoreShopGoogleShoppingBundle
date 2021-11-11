@@ -25,7 +25,7 @@ class ProductImageObjectTransformer implements ObjectTransformerInterface
      */
     public function transform(GoogleShoppingProductInterface $product, Product $item, array $options = [])
     {
-        $baseUrl = isset($options['base_url']) ? $options['base_url'] : $this->baseUrl;
+        $baseUrl = $options['base_url'] ?? $this->baseUrl;
         $image = $product->getImage();
 
         if ($image instanceof Image) {
@@ -39,7 +39,7 @@ class ProductImageObjectTransformer implements ObjectTransformerInterface
         }
 
         foreach ($product->getImages() as $image) {
-            if ($image instanceof Image) {
+            if (!$image instanceof Image) {
                 continue;
             }
 
