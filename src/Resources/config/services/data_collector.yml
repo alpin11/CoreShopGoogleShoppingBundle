@@ -1,8 +1,0 @@
-services:
-
-    CoreShop\Bundle\GoogleShoppingBundle\DataCollector\DataCollectorInterface: '@coreshop.google_shopping.data_collector.default'
-    coreshop.google_shopping.data_collector.default:
-        class: CoreShop\Bundle\GoogleShoppingBundle\DataCollector\DefaultDataCollector
-        public: true
-        arguments:
-            - '@coreshop.google_shopping.object_filter.composite'

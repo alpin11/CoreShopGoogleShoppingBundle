@@ -1,0 +1,9 @@
+services:
+
+    CoreShop\Bundle\GoogleShoppingBundle\DataProcessor\DataProcessorInterface: '@coreshop.google_shopping.data_processor.default'
+    coreshop.google_shopping.data_processor.default:
+        class: CoreShop\Bundle\GoogleShoppingBundle\DataProcessor\DefaultDataProcessor
+        public: true
+        arguments:
+            - '@coreshop.google_shopping.object_filter.composite'
+            - '@coreshop.google_shopping.object_transformer'
